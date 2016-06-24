@@ -12,6 +12,7 @@ var REF = 'refs/heads/master';
  * A webtask that can be used as a Github webhook to automatically add
  * collaborators who star the repo.
  *
+ * wt create --name add_collaborator --secret GITHUB_TOKEN=<YOUR_TOKEN> --prod https://raw.githubusercontent.com/CarlosGabaldon/webtask/master/add_collaborator.js`
  */
 module.exports = function (ctx, cb) {
     var msg;
@@ -19,11 +20,6 @@ module.exports = function (ctx, cb) {
 
     if (!ctx.body) {
         err = new Error('This webtask must be created with the `--parse` flag (`pb` claim)');
-        return cb(err);
-    }
-
-    if (!Array.isArray(ctx.body.commits)) {
-        err = new Error('Unexpected payload: Missing commits array.');
         return cb(err);
     }
 
