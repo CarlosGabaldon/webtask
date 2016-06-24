@@ -36,7 +36,7 @@ module.exports = function (ctx, cb) {
 
     console.log(payload.sender.login);
 
-    addCollaborator(payload.sender.login);
+    //addCollaborator(payload.sender.login);
 
 
     function addCollaborator(userName) {
@@ -49,10 +49,10 @@ module.exports = function (ctx, cb) {
         };
         var promise = Request.postAsync(options);
 
-        return promise;
-            // .get(1)
-            // .then(function (collaborators) {
-            //     return 'Successfully added collaborator `' + userName + '`.';
-            // });
+        return promise
+            .get(1)
+            .then(function (collaborators) {
+                return 'Successfully added collaborator `' + userName + '`.';
+            });
     }
 };
