@@ -34,15 +34,11 @@ module.exports = function (ctx, cb) {
         'User-Agent': 'Webtask Tagger',
     };
 
-    console.log(payload.sender.login);
-
-    //addCollaborator(payload.sender.login);
+    addCollaborator(payload.sender.login);
 
 
     function addCollaborator(userName) {
         var url = API_URL + '/repos/' + payload.repository.full_name + '/collaborators/refs/' + userName;
-        console.log(url);
-
         var options = {
             url: url,
             headers: headers,
