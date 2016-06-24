@@ -38,12 +38,25 @@ module.exports = function (ctx, cb) {
 
 
     function addCollaborator(userName) {
-        var url = API_URL + '/repos/' + payload.repository.full_name + '/collaborators/' + userName;
+        //var url = API_URL + '/repos/' + payload.repository.full_name + '/collaborators/' + userName;
+        var url = API_URL + '/repos/' + payload.repository.full_name + '/issues'
+
         console.log(url);
+
+        // var options = {
+        //     url: url,
+        //     headers: headers,
+        // };
+
         var options = {
             url: url,
             headers: headers,
+            json: true,
+            body: {
+                title: 'User ' + userName + ' started repo',
+            },
         };
+
         console.log(options);
         var promise = Request.postAsync(options);
 
