@@ -29,11 +29,6 @@ module.exports = function (ctx, cb) {
     }
     var payload = ctx.body;
 
-    if (payload.ref !== REF) {
-        msg = 'Push event does not affect the ref `' + REF + '`.';
-        return cb(null, msg);
-    }
-
     var headers = {
         'Authorization': 'Bearer ' + ctx.data.GITHUB_TOKEN,
         'User-Agent': 'Webtask Tagger',
