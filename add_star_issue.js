@@ -1,19 +1,8 @@
 var Bluebird = require('bluebird');
 var Request = Bluebird.promisifyAll(require('request'));
 var _ = require('lodash');
-
 var API_URL = 'https://api.github.com';
-var WEB_URL = 'https://github.com';
-var REF = 'refs/heads/master';
 
-/**
- * Automatically add collaborators who star the repo
- *
- * A webtask that can be used as a Github webhook to automatically add
- * collaborators who star the repo.
- *
- * wt create --name add_collaborator --secret GITHUB_TOKEN=<YOUR_TOKEN> --prod https://raw.githubusercontent.com/CarlosGabaldon/webtask/master/add_collaborator.js`
- */
 module.exports = function (ctx, cb) {
     var msg;
     var err;
@@ -34,19 +23,11 @@ module.exports = function (ctx, cb) {
         'User-Agent': 'Webtask star collaborator',
     };
 
-    addCollaborator(payload.sender.login);
+    addStarIssue(payload.sender.login);
 
 
-    function addCollaborator(userName) {
-        //var url = API_URL + '/repos/' + payload.repository.full_name + '/collaborators/' + userName;
+    function addStarIssue(userName) {
         var url = API_URL + '/repos/' + payload.repository.full_name + '/issues'
-
-        console.log(url);
-
-        // var options = {
-        //     url: url,
-        //     headers: headers,
-        // };
 
         var options = {
             url: url,
@@ -57,13 +38,12 @@ module.exports = function (ctx, cb) {
             },
         };
 
-        console.log(options);
         var promise = Request.postAsync(options);
 
         return promise
             .get(1)
             .then(function (collaborators) {
-                return 'Successfully added collaborator `' + userName + '`.';
+                return 'Successfully added issue for user  `' + userName + '`.';
             });
     }
 };
