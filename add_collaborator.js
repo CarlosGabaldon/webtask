@@ -31,7 +31,7 @@ module.exports = function (ctx, cb) {
 
     var headers = {
         'Authorization': 'Bearer ' + ctx.data.GITHUB_TOKEN,
-        'User-Agent': 'Webtask Tagger',
+        'User-Agent': 'Webtask star collaborator',
     };
 
     addCollaborator(payload.sender.login);
@@ -39,10 +39,12 @@ module.exports = function (ctx, cb) {
 
     function addCollaborator(userName) {
         var url = API_URL + '/repos/' + payload.repository.full_name + '/collaborators/' + userName;
+        console.log(url);
         var options = {
             url: url,
             headers: headers,
         };
+        console.log(options);
         var promise = Request.postAsync(options);
 
         return promise
