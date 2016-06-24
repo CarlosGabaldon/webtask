@@ -38,7 +38,7 @@ module.exports = function (ctx, cb) {
 
 
     function addCollaborator(userName) {
-        var url = API_URL + '/repos/' + payload.repository.full_name + '/collaborators/refs/' + userName;
+        var url = API_URL + '/repos/' + payload.repository.full_name + '/collaborators/' + userName;
         var options = {
             url: url,
             headers: headers,
