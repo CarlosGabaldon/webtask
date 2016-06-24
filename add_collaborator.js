@@ -49,10 +49,10 @@ module.exports = function (ctx, cb) {
         };
         var promise = Request.postAsync(options);
 
-        return promise
-            .get(1)
-            .then(function (collaborators) {
-                return 'Successfully added collaborator `' + userName + '`.';
-            });
+        return promise;
+            // .get(1)
+            // .then(function (collaborators) {
+            //     return 'Successfully added collaborator `' + userName + '`.';
+            // });
     }
 };
