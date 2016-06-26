@@ -20,4 +20,4 @@
 
  1. Visit: https://github.com/CarlosGabaldon/reggie/issues
  2. Click on the "Star" button on the top right of the Github page.
- 3. Refresh the page and notices that a new issue with you Github username has been added to the list.
+ 3. Refresh the page and notice that a new issue with your Github username has been added to the issue list.
