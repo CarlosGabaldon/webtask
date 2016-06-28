@@ -34,7 +34,7 @@ module.exports = function (ctx, cb) {
             headers: headers,
             json: true,
             body: {
-                title: userName + ' started the repo, reach out to see if they would like to contribute.',
+                title: userName + ' starred the repo, reach out to see if they would like to contribute.',
             },
         };
 
